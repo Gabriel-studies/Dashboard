@@ -98,17 +98,16 @@ if page == "Recommender System":
     #--------------------------------- Header ---------------------------------------------# 
 
     # Lets show Youtube Trailer for the Top predicted Movie (Highest Rating Prediction)
-    # Using VideosSearch Library
 
-    def get_trailer_url(movie_title):
-        search_query = f"{movie_title} trailer"
-        try:
-            videos_search = VideosSearch(search_query, limit=1)
-            result = videos_search.result()
-            return result['result'][0]['link']
-        except Exception as e:
-            print(f"Error fetching trailer: {e}")
-            return "https://www.youtube.com"  # fallback link or placeholder
+    # NEW (offline version)
+
+    trailers_df = pd.read_csv('trailers.csv')
+    
+    def get_trailer_url(title):
+        match = trailers_df[trailers_df['title'] == title]
+        if not match.empty:
+            return match.iloc[0]['trailer_url']
+        return "Trailer not found"
 
     #######################################################################################################################################################
     # -------------------------------------------------------------- Main Page --------------------------------------------------------------------------#    
