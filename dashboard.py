@@ -101,18 +101,14 @@ if page == "Recommender System":
     # Using VideosSearch Library
 
     def get_trailer_url(movie_title):
-        search_query = f"{movie_title} official trailer"
-
-        # Lets get the top one
-        videos_search = VideosSearch(search_query, limit=1)
-
-        results = videos_search.result()
-        if results['result']:
-
-            # the def now returns the link
-            return results['result'][0]['link']
-        
-        return None
+        search_query = f"{movie_title} trailer"
+        try:
+            videos_search = VideosSearch(search_query, limit=1)
+            result = videos_search.result()
+            return result['result'][0]['link']
+        except Exception as e:
+            print(f"Error fetching trailer: {e}")
+            return "https://www.youtube.com"  # fallback link or placeholder
 
     #######################################################################################################################################################
     # -------------------------------------------------------------- Main Page --------------------------------------------------------------------------#    
