@@ -5,8 +5,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.metrics.pairwise import euclidean_distances
 import plotly.express as px
-from youtubesearchpython import VideosSearch
 from matplotlib.colors import LinearSegmentedColormap
+
+# Dashboard Link: https://dashboard-ca3.streamlit.app/
 
 # This Dashboard will have two pages
 # 1. Analytics
@@ -98,8 +99,8 @@ if page == "Recommender System":
     #--------------------------------- Header ---------------------------------------------# 
 
     # Lets show Youtube Trailer for the Top predicted Movie (Highest Rating Prediction)
-
     # NEW (offline version)
+    # The API calls for fetching data where changed to a local style, due to the incompatibility with the Streamlit hosting
 
     trailers_df = pd.read_csv('trailers.csv')
     
